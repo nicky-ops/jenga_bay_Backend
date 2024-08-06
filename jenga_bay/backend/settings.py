@@ -33,7 +33,9 @@ SECRET_KEY = 'django-insecure-chiz4es#jcevo2z(fejvx__3*9840fpqvf3$42ud*)=1_dy88%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "jenga-bay-backend.onrender.com", "*"
+]
 
 
 # Application definition
