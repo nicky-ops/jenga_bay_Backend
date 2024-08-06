@@ -13,9 +13,5 @@ then
   python world_champ_2022/manage.py createsuperuser --no-input
 fi
 
-./manage.py migrate sites
-./manage.py migrate
-
-python manage.py makemigrations
 # Apply any outstanding database migrations
 python manage.py migrate
