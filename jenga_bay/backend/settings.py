@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "whitenoise.runserver_nostatic",
     'rest_framework',
     'corsheaders',
     'django_filters',
@@ -105,24 +106,13 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-  #  'default': {
-  #      'ENGINE': 'django.db.backends.sqlite3',
-  #      'NAME': BASE_DIR / 'db.sqlite3',
-   # }
-#}
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'URL': os.getenv('POSTGRES_URL'),
-        'NAME': os.getenv('PGNAME'),
-        'USER': os.getenv('PGUSER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('PGHOST'),
-        'PORT': os.getenv('PGPORT'),
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
@@ -174,13 +164,11 @@ USE_TZ = True
 # Here, they well be accessible at your-domain.onrender.com/static/... or yourcustomdomain.com/static/...
 STATIC_URL = '/static/'
 
-# This production code might break development mode, so we check whether we're in DEBUG mode
-if not DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
